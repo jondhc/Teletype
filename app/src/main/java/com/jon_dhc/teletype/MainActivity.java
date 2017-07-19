@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,6 +19,18 @@ public class MainActivity extends AppCompatActivity {
         FullscreenCall();
         //Setting content
         setContentView(R.layout.activity_main);
+
+        //Typewriter animation
+        final TypeWriter tw = (TypeWriter) findViewById(R.id.tv);
+        Button btn = (Button) findViewById(R.id.btn);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tw.setText("");
+                tw.setCharacterDelay(150);
+                tw.animateText("What would you like me to do?");
+            }
+        });
     }
 
     public void FullscreenCall(){       //Method to hide navigation bar (Immersive mode)

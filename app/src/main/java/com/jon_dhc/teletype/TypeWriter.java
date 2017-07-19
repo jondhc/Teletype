@@ -8,7 +8,7 @@ import android.util.AttributeSet;
  * Created by jon_dhc on 7/19/17.
  */
 
-public class TypeWriter extends android.support.v7.widget.AppCompatTextView{
+public class TypeWriter extends android.support.v7.widget.AppCompatTextView {
 
     private CharSequence mText; //Text to display
     private int mIndex;         //Number of letter to display
@@ -19,34 +19,34 @@ public class TypeWriter extends android.support.v7.widget.AppCompatTextView{
         super(context);
     }
 
-    public TypeWriter(Context context, AttributeSet attrs){
+    public TypeWriter(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
     private Handler mHandler = new Handler();
 
-    private Runnable characterAdder = new Runnable(){
+    private Runnable characterAdder = new Runnable() {
 
         @Override
         public void run() {
             setText(mText.subSequence(0, mIndex++));
 
-            if(mIndex<=mText.length()){
+            if (mIndex <= mText.length()) {
                 mHandler.postDelayed(characterAdder, mDelay);
             }
         }
     };
 
-    public void animateText(CharSequence txt){
-        mText=txt;
-        mIndex=0;
+    public void animateText(CharSequence txt) {
+        mText = txt;
+        mIndex = 0;
 
         setText("");
         mHandler.removeCallbacks(characterAdder);
         mHandler.postDelayed(characterAdder, mDelay);
     }
 
-    public void setCharacterDelay(long m){
+    public void setCharacterDelay(long m) {
         mDelay = m;
     }
 
